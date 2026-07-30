@@ -207,22 +207,30 @@ couldn't, not fully.**
   video-generation attempts fall back to a still image automatically, so
   the pipeline finishes cleanly either way.
 
-**A subtitle timing issue I couldn't reproduce yet.**
+**A small audio/video lag at shot changes I could not fix.**
 
-- What I tried: after adding subtitles, I noticed what looked like a
-  timing mismatch between when a shot changes and when its subtitle
-  updates.
-- What happened: [fill in exactly what you saw, and roughly when in the
-  video]
-- My hypothesis: [your best guess after watching it again]
+- What I tried: after adding subtitles, I watched the finished video and
+  noticed that at some cuts, the new shot's picture and subtitle arrive a
+  little after the new shot's audio has already started — the narration
+  for the next line begins just slightly before you see the slide for it.
+- What happened: it's subtle, not a full freeze or a wrong caption, but
+  it's noticeable — the audio is a beat ahead of the picture at some cuts.
+- My hypothesis: each shot's video and subtitle are combined with an
+  ffmpeg filter (`overlay`, which lays the caption image on top of the
+  moving background) before the audio is attached. That filter step can
+  add a small startup delay to the video stream that the audio track,
+  which passes through unfiltered, doesn't get. So video and audio, which
+  start together in theory, can drift by a frame or two in practice.
 - What I tried next: checked whether the picture itself was jittering
-  between frames (it wasn't), and checked the frame right after every one
-  of the 16 cuts in the finished video to see if the wrong subtitle was
-  showing anywhere (it wasn't, in all 16 cases).
-- Final resolution: not fixed yet. Since it didn't show up in still frames
-  taken at each cut, it's either something only visible while the video
-  is actually playing, or specific to one moment I haven't pinned down.
-  Noting it here honestly rather than claiming a fix that wasn't verified.
+  frame to frame within a shot (it wasn't - that part is smooth), and
+  checked the frame right after every one of the 16 cuts in the finished
+  video to confirm the correct subtitle text was showing (it was, in all
+  16 cases). Neither of those checks was fine-grained enough to catch a
+  lag of a fraction of a second, which only shows up while the video is
+  actually playing, not in a still frame.
+- Final resolution: not fixed. I have a reasonable hypothesis but hadn't
+  confirmed it, and decided not to spend more of the day chasing a fix I
+  couldn't yet verify. Documenting it honestly here instead.
 
 ## 6. Not AI-generated
 
