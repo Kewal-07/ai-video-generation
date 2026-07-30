@@ -1,0 +1,199 @@
+{
+  "shots": {
+    "s01": {
+      "image_url": "https://image.pollinations.ai/prompt/Glossy%20red%20apple%20in%20soft%20studio%20light%2C%20positioned%20in%20the%20left%20half%20of%20frame%2C%20its%20surface%20dissolving%20into%20streams%20of%20glowing%20binary%20digit%20shaped%20light%20particles%20drifting%20toward%20the%20right%20half%20of%20frame%20where%20they%20coalesce%20into%20a%20faint%20grid%20of%20light%2C%20clean%203D%20digital%20illustration%2C%20dark%20navy%20background%2C%20glowing%20cyan%20magenta%20and%20gold%20accent%20lights%2C%20soft%20volumetric%20lighting%2C%20minimalist%20geometric%20shapes%2C%20high%20detail%20render%2C%20cinematic%20depth%20of%20field%2C%20consistent%20color%20grade%2C%20no%20text%2C%20no%20letters%2C%20no%20numbers%2C%20no%20watermark%2C%20no%20text%2C%20no%20letters%2C%20no%20numbers%2C%20no%20watermark?width=2560&height=1440&seed=42&nologo=true",
+      "image_endpoint": "image.pollinations.ai",
+      "image_attempts": 1,
+      "image_seed": 42,
+      "image_prompt": "Glossy red apple in soft studio light, positioned in the left half of frame, its surface dissolving into streams of glowing binary digit shaped light particles drifting toward the right half of frame where they coalesce into a faint grid of light, clean 3D digital illustration, dark navy background, glowing cyan magenta and gold accent lights, soft volumetric lighting, minimalist geometric shapes, high detail render, cinematic depth of field, consistent color grade, no text, no letters, no numbers, no watermark, no text, no letters, no numbers, no watermark",
+      "audio_duration": 6.936,
+      "shot_duration": 7.286,
+      "voice": "en-US-GuyNeural",
+      "source": "still",
+      "video_error": "HTTPSConnectionPool(host='gen.pollinations.ai', port=443): Read timed out. (read timeout=300)",
+      "clip_source": "still"
+    },
+    "s02": {
+      "image_url": "https://image.pollinations.ai/prompt/Macro%20view%20of%20a%20smooth%20glowing%20colorful%20sheet%20of%20light%20beginning%20to%20fracture%20along%20a%20fine%20grid%20into%20small%20square%20tiles%2C%20each%20tile%20glowing%20a%20slightly%20different%20hue%2C%20dramatic%20close%20perspective%2C%20clean%203D%20digital%20illustration%2C%20dark%20navy%20background%2C%20glowing%20cyan%20magenta%20and%20gold%20accent%20lights%2C%20soft%20volumetric%20lighting%2C%20minimalist%20geometric%20shapes%2C%20high%20detail%20render%2C%20cinematic%20depth%20of%20field%2C%20consistent%20color%20grade%2C%20no%20text%2C%20no%20letters%2C%20no%20numbers%2C%20no%20watermark%2C%20no%20text%2C%20no%20letters%2C%20no%20numbers%2C%20no%20watermark?width=2560&height=1440&seed=43&nologo=true",
+      "image_endpoint": "image.pollinations.ai",
+      "image_attempts": 1,
+      "image_seed": 43,
+      "image_prompt": "Macro view of a smooth glowing colorful sheet of light beginning to fracture along a fine grid into small square tiles, each tile glowing a slightly different hue, dramatic close perspective, clean 3D digital illustration, dark navy background, glowing cyan magenta and gold accent lights, soft volumetric lighting, minimalist geometric shapes, high detail render, cinematic depth of field, consistent color grade, no text, no letters, no numbers, no watermark, no text, no letters, no numbers, no watermark",
+      "audio_duration": 9.288,
+      "shot_duration": 9.638,
+      "voice": "en-US-GuyNeural",
+      "source": "still",
+      "video_error": "HTTP 402: {\"success\":false,\"error\":{\"message\":\"Insufficient balance. This request costs ~1.0105 pollen, but your available balance is 0.0000.\",\"code\":\"PAYMENT_REQUIRED\",\"timestamp\":\"2026-07-30T04:54:17.275Z\"},\"",
+      "clip_source": "still"
+    },
+    "s03": {
+      "image_url": "https://image.pollinations.ai/prompt/A%20single%20glowing%20square%20pixel%20floating%20in%20dark%20space%2C%20softly%20pulsing%2C%20surrounded%20by%20faint%20drifting%20wisps%20and%20sparks%20of%20light%2C%20minimalist%20and%20enigmatic%2C%20clean%203D%20digital%20illustration%2C%20dark%20navy%20background%2C%20glowing%20cyan%20magenta%20and%20gold%20accent%20lights%2C%20soft%20volumetric%20lighting%2C%20minimalist%20geometric%20shapes%2C%20high%20detail%20render%2C%20cinematic%20depth%20of%20field%2C%20consistent%20color%20grade%2C%20no%20text%2C%20no%20letters%2C%20no%20numbers%2C%20no%20watermark%2C%20no%20text%2C%20no%20letters%2C%20no%20numbers%2C%20no%20watermark?width=2560&height=1440&seed=44&nologo=true",
+      "image_endpoint": "image.pollinations.ai",
+      "image_attempts": 1,
+      "image_seed": 44,
+      "image_prompt": "A single glowing square pixel floating in dark space, softly pulsing, surrounded by faint drifting wisps and sparks of light, minimalist and enigmatic, clean 3D digital illustration, dark navy background, glowing cyan magenta and gold accent lights, soft volumetric lighting, minimalist geometric shapes, high detail render, cinematic depth of field, consistent color grade, no text, no letters, no numbers, no watermark, no text, no letters, no numbers, no watermark",
+      "audio_duration": 3.096,
+      "shot_duration": 3.446,
+      "voice": "en-US-GuyNeural",
+      "clip_source": "still"
+    },
+    "s04": {
+      "image_url": "https://image.pollinations.ai/prompt/Stylized%20cross%20section%20of%20a%20human%20eye%20rendered%20as%20glowing%20light%20circuitry%2C%20with%20three%20colored%20light%20rays%2C%20red%20green%20and%20blue%2C%20emanating%20from%20the%20pupil%20into%20darkness%2C%20biological%20meets%20digital%20aesthetic%2C%20clean%203D%20digital%20illustration%2C%20dark%20navy%20background%2C%20glowing%20cyan%20magenta%20and%20gold%20accent%20lights%2C%20soft%20volumetric%20lighting%2C%20minimalist%20geometric%20shapes%2C%20high%20detail%20render%2C%20cinematic%20depth%20of%20field%2C%20consistent%20color%20grade%2C%20no%20text%2C%20no%20letters%2C%20no%20numbers%2C%20no%20watermark%2C%20no%20text%2C%20no%20letters%2C%20no%20numbers%2C%20no%20watermark?width=2560&height=1440&seed=45&nologo=true",
+      "image_endpoint": "image.pollinations.ai",
+      "image_attempts": 1,
+      "image_seed": 45,
+      "image_prompt": "Stylized cross section of a human eye rendered as glowing light circuitry, with three colored light rays, red green and blue, emanating from the pupil into darkness, biological meets digital aesthetic, clean 3D digital illustration, dark navy background, glowing cyan magenta and gold accent lights, soft volumetric lighting, minimalist geometric shapes, high detail render, cinematic depth of field, consistent color grade, no text, no letters, no numbers, no watermark, no text, no letters, no numbers, no watermark",
+      "audio_duration": 5.232,
+      "shot_duration": 5.582,
+      "voice": "en-US-GuyNeural",
+      "clip_source": "still"
+    },
+    "s05": {
+      "image_url": "https://image.pollinations.ai/prompt/Extreme%20macro%20view%20of%20a%20single%20pixel%20split%20into%20three%20vertical%20glowing%20bars%20of%20light%2C%20one%20red%2C%20one%20green%2C%20one%20blue%2C%20standing%20side%20by%20side%20like%20glass%20columns%2C%20dark%20background%2C%20clean%203D%20digital%20illustration%2C%20dark%20navy%20background%2C%20glowing%20cyan%20magenta%20and%20gold%20accent%20lights%2C%20soft%20volumetric%20lighting%2C%20minimalist%20geometric%20shapes%2C%20high%20detail%20render%2C%20cinematic%20depth%20of%20field%2C%20consistent%20color%20grade%2C%20no%20text%2C%20no%20letters%2C%20no%20numbers%2C%20no%20watermark%2C%20no%20text%2C%20no%20letters%2C%20no%20numbers%2C%20no%20watermark?width=2560&height=1440&seed=46&nologo=true",
+      "image_endpoint": "image.pollinations.ai",
+      "image_attempts": 1,
+      "image_seed": 46,
+      "image_prompt": "Extreme macro view of a single pixel split into three vertical glowing bars of light, one red, one green, one blue, standing side by side like glass columns, dark background, clean 3D digital illustration, dark navy background, glowing cyan magenta and gold accent lights, soft volumetric lighting, minimalist geometric shapes, high detail render, cinematic depth of field, consistent color grade, no text, no letters, no numbers, no watermark, no text, no letters, no numbers, no watermark",
+      "audio_duration": 4.752,
+      "shot_duration": 5.101999999999999,
+      "voice": "en-US-GuyNeural",
+      "clip_source": "still"
+    },
+    "s06": {
+      "image_url": "https://image.pollinations.ai/prompt/Three%20cone%20shaped%20beams%20of%20red%2C%20green%2C%20and%20blue%20light%20converging%20toward%20a%20single%20point%20in%20dark%20space%2C%20overlapping%20regions%20glowing%20in%20blended%20secondary%20hues%2C%20elegant%20volumetric%20light%20art%2C%20clean%203D%20digital%20illustration%2C%20dark%20navy%20background%2C%20glowing%20cyan%20magenta%20and%20gold%20accent%20lights%2C%20soft%20volumetric%20lighting%2C%20minimalist%20geometric%20shapes%2C%20high%20detail%20render%2C%20cinematic%20depth%20of%20field%2C%20consistent%20color%20grade%2C%20no%20text%2C%20no%20letters%2C%20no%20numbers%2C%20no%20watermark%2C%20no%20text%2C%20no%20letters%2C%20no%20numbers%2C%20no%20watermark?width=2560&height=1440&seed=47&nologo=true",
+      "image_endpoint": "image.pollinations.ai",
+      "image_attempts": 1,
+      "image_seed": 47,
+      "image_prompt": "Three cone shaped beams of red, green, and blue light converging toward a single point in dark space, overlapping regions glowing in blended secondary hues, elegant volumetric light art, clean 3D digital illustration, dark navy background, glowing cyan magenta and gold accent lights, soft volumetric lighting, minimalist geometric shapes, high detail render, cinematic depth of field, consistent color grade, no text, no letters, no numbers, no watermark, no text, no letters, no numbers, no watermark",
+      "audio_duration": 7.272,
+      "shot_duration": 7.622,
+      "voice": "en-US-GuyNeural",
+      "source": "still",
+      "video_error": "HTTP 402: {\"success\":false,\"error\":{\"message\":\"Insufficient balance. This request costs ~1.0105 pollen, but your available balance is 0.0000.\",\"code\":\"PAYMENT_REQUIRED\",\"timestamp\":\"2026-07-30T04:54:36.982Z\"},\"",
+      "clip_source": "still"
+    },
+    "s07": {
+      "image_url": "https://image.pollinations.ai/prompt/A%20tall%20glowing%20vertical%20light%20gauge%20made%20of%20stacked%20luminous%20segments%2C%20like%20a%20futuristic%20thermometer%20of%20light%2C%20measuring%20brightness%20intensity%2C%20dark%20technical%20background%2C%20clean%203D%20digital%20illustration%2C%20dark%20navy%20background%2C%20glowing%20cyan%20magenta%20and%20gold%20accent%20lights%2C%20soft%20volumetric%20lighting%2C%20minimalist%20geometric%20shapes%2C%20high%20detail%20render%2C%20cinematic%20depth%20of%20field%2C%20consistent%20color%20grade%2C%20no%20text%2C%20no%20letters%2C%20no%20numbers%2C%20no%20watermark%2C%20no%20text%2C%20no%20letters%2C%20no%20numbers%2C%20no%20watermark?width=2560&height=1440&seed=48&nologo=true",
+      "image_endpoint": "image.pollinations.ai",
+      "image_attempts": 1,
+      "image_seed": 48,
+      "image_prompt": "A tall glowing vertical light gauge made of stacked luminous segments, like a futuristic thermometer of light, measuring brightness intensity, dark technical background, clean 3D digital illustration, dark navy background, glowing cyan magenta and gold accent lights, soft volumetric lighting, minimalist geometric shapes, high detail render, cinematic depth of field, consistent color grade, no text, no letters, no numbers, no watermark, no text, no letters, no numbers, no watermark",
+      "audio_duration": 6.168,
+      "shot_duration": 6.518,
+      "voice": "en-US-GuyNeural",
+      "clip_source": "still"
+    },
+    "s08": {
+      "image_url": "https://image.pollinations.ai/prompt/A%20glowing%20staircase%20of%20light%20made%20of%20eight%20distinct%20luminous%20steps%20rising%20upward%2C%20each%20step%20brighter%20than%20the%20last%2C%20dark%20minimalist%20background%2C%20clean%20geometric%20render%2C%20clean%203D%20digital%20illustration%2C%20dark%20navy%20background%2C%20glowing%20cyan%20magenta%20and%20gold%20accent%20lights%2C%20soft%20volumetric%20lighting%2C%20minimalist%20geometric%20shapes%2C%20high%20detail%20render%2C%20cinematic%20depth%20of%20field%2C%20consistent%20color%20grade%2C%20no%20text%2C%20no%20letters%2C%20no%20numbers%2C%20no%20watermark%2C%20no%20text%2C%20no%20letters%2C%20no%20numbers%2C%20no%20watermark?width=2560&height=1440&seed=49&nologo=true",
+      "image_endpoint": "image.pollinations.ai",
+      "image_attempts": 1,
+      "image_seed": 49,
+      "image_prompt": "A glowing staircase of light made of eight distinct luminous steps rising upward, each step brighter than the last, dark minimalist background, clean geometric render, clean 3D digital illustration, dark navy background, glowing cyan magenta and gold accent lights, soft volumetric lighting, minimalist geometric shapes, high detail render, cinematic depth of field, consistent color grade, no text, no letters, no numbers, no watermark, no text, no letters, no numbers, no watermark",
+      "audio_duration": 12.216,
+      "shot_duration": 12.565999999999999,
+      "voice": "en-US-GuyNeural",
+      "clip_source": "still"
+    },
+    "s09": {
+      "image_url": "https://image.pollinations.ai/prompt/A%20long%20horizontal%20glowing%20gradient%20bar%20of%20light%20stretching%20from%20complete%20darkness%20on%20the%20left%20to%20blinding%20brightness%20on%20the%20right%2C%20smooth%20continuous%20gradient%2C%20dark%20background%2C%20clean%203D%20digital%20illustration%2C%20dark%20navy%20background%2C%20glowing%20cyan%20magenta%20and%20gold%20accent%20lights%2C%20soft%20volumetric%20lighting%2C%20minimalist%20geometric%20shapes%2C%20high%20detail%20render%2C%20cinematic%20depth%20of%20field%2C%20consistent%20color%20grade%2C%20no%20text%2C%20no%20letters%2C%20no%20numbers%2C%20no%20watermark%2C%20no%20text%2C%20no%20letters%2C%20no%20numbers%2C%20no%20watermark?width=2560&height=1440&seed=50&nologo=true",
+      "image_endpoint": "image.pollinations.ai",
+      "image_attempts": 1,
+      "image_seed": 50,
+      "image_prompt": "A long horizontal glowing gradient bar of light stretching from complete darkness on the left to blinding brightness on the right, smooth continuous gradient, dark background, clean 3D digital illustration, dark navy background, glowing cyan magenta and gold accent lights, soft volumetric lighting, minimalist geometric shapes, high detail render, cinematic depth of field, consistent color grade, no text, no letters, no numbers, no watermark, no text, no letters, no numbers, no watermark",
+      "audio_duration": 12.648,
+      "shot_duration": 12.998,
+      "voice": "en-US-GuyNeural",
+      "clip_source": "still"
+    },
+    "s10": {
+      "image_url": "https://image.pollinations.ai/prompt/An%20abstract%20three%20dimensional%20cube%20made%20of%20glowing%20grid%20lines%20floating%20in%20dark%20space%2C%20faint%20colored%20points%20of%20light%20marking%20coordinates%20inside%20it%2C%20elegant%20technical%20visualization%2C%20clean%203D%20digital%20illustration%2C%20dark%20navy%20background%2C%20glowing%20cyan%20magenta%20and%20gold%20accent%20lights%2C%20soft%20volumetric%20lighting%2C%20minimalist%20geometric%20shapes%2C%20high%20detail%20render%2C%20cinematic%20depth%20of%20field%2C%20consistent%20color%20grade%2C%20no%20text%2C%20no%20letters%2C%20no%20numbers%2C%20no%20watermark%2C%20no%20text%2C%20no%20letters%2C%20no%20numbers%2C%20no%20watermark?width=1708&height=960&seed=51&nologo=true",
+      "image_endpoint": "image.pollinations.ai",
+      "image_attempts": 1,
+      "image_seed": 51,
+      "image_prompt": "An abstract three dimensional cube made of glowing grid lines floating in dark space, faint colored points of light marking coordinates inside it, elegant technical visualization, clean 3D digital illustration, dark navy background, glowing cyan magenta and gold accent lights, soft volumetric lighting, minimalist geometric shapes, high detail render, cinematic depth of field, consistent color grade, no text, no letters, no numbers, no watermark, no text, no letters, no numbers, no watermark",
+      "audio_duration": 4.2,
+      "shot_duration": 4.55,
+      "voice": "en-US-GuyNeural",
+      "clip_source": "still"
+    },
+    "s11": {
+      "image_url": "https://image.pollinations.ai/prompt/A%20single%20glowing%20solid%20red%20cube%20floating%20in%20pure%20darkness%2C%20radiant%20crimson%20light%2C%20minimalist%20product%20render%20style%2C%20clean%203D%20digital%20illustration%2C%20dark%20navy%20background%2C%20glowing%20cyan%20magenta%20and%20gold%20accent%20lights%2C%20soft%20volumetric%20lighting%2C%20minimalist%20geometric%20shapes%2C%20high%20detail%20render%2C%20cinematic%20depth%20of%20field%2C%20consistent%20color%20grade%2C%20no%20text%2C%20no%20letters%2C%20no%20numbers%2C%20no%20watermark%2C%20no%20text%2C%20no%20letters%2C%20no%20numbers%2C%20no%20watermark?width=1708&height=960&seed=52&nologo=true",
+      "image_endpoint": "image.pollinations.ai",
+      "image_attempts": 1,
+      "image_seed": 52,
+      "image_prompt": "A single glowing solid red cube floating in pure darkness, radiant crimson light, minimalist product render style, clean 3D digital illustration, dark navy background, glowing cyan magenta and gold accent lights, soft volumetric lighting, minimalist geometric shapes, high detail render, cinematic depth of field, consistent color grade, no text, no letters, no numbers, no watermark, no text, no letters, no numbers, no watermark",
+      "audio_duration": 4.032,
+      "shot_duration": 4.382,
+      "voice": "en-US-GuyNeural",
+      "clip_source": "still"
+    },
+    "s12": {
+      "image_url": "https://image.pollinations.ai/prompt/A%20single%20dark%20matte%20cube%20barely%20visible%20against%20a%20pure%20black%20background%2C%20faint%20outline%20lit%20by%20the%20thinnest%20rim%20of%20light%2C%20minimalist%20product%20render%20style%2C%20clean%203D%20digital%20illustration%2C%20dark%20navy%20background%2C%20glowing%20cyan%20magenta%20and%20gold%20accent%20lights%2C%20soft%20volumetric%20lighting%2C%20minimalist%20geometric%20shapes%2C%20high%20detail%20render%2C%20cinematic%20depth%20of%20field%2C%20consistent%20color%20grade%2C%20no%20text%2C%20no%20letters%2C%20no%20numbers%2C%20no%20watermark%2C%20no%20text%2C%20no%20letters%2C%20no%20numbers%2C%20no%20watermark?width=1708&height=960&seed=53&nologo=true",
+      "image_endpoint": "image.pollinations.ai",
+      "image_attempts": 1,
+      "image_seed": 53,
+      "image_prompt": "A single dark matte cube barely visible against a pure black background, faint outline lit by the thinnest rim of light, minimalist product render style, clean 3D digital illustration, dark navy background, glowing cyan magenta and gold accent lights, soft volumetric lighting, minimalist geometric shapes, high detail render, cinematic depth of field, consistent color grade, no text, no letters, no numbers, no watermark, no text, no letters, no numbers, no watermark",
+      "audio_duration": 4.776,
+      "shot_duration": 5.1259999999999994,
+      "voice": "en-US-GuyNeural",
+      "clip_source": "still"
+    },
+    "s13": {
+      "image_url": "https://image.pollinations.ai/prompt/A%20single%20glowing%20pure%20white%20cube%20radiating%20intense%20bright%20light%20against%20dark%20background%2C%20overexposed%20glow%2C%20minimalist%20product%20render%20style%2C%20clean%203D%20digital%20illustration%2C%20dark%20navy%20background%2C%20glowing%20cyan%20magenta%20and%20gold%20accent%20lights%2C%20soft%20volumetric%20lighting%2C%20minimalist%20geometric%20shapes%2C%20high%20detail%20render%2C%20cinematic%20depth%20of%20field%2C%20consistent%20color%20grade%2C%20no%20text%2C%20no%20letters%2C%20no%20numbers%2C%20no%20watermark%2C%20no%20text%2C%20no%20letters%2C%20no%20numbers%2C%20no%20watermark?width=1708&height=960&seed=54&nologo=true",
+      "image_endpoint": "image.pollinations.ai",
+      "image_attempts": 1,
+      "image_seed": 54,
+      "image_prompt": "A single glowing pure white cube radiating intense bright light against dark background, overexposed glow, minimalist product render style, clean 3D digital illustration, dark navy background, glowing cyan magenta and gold accent lights, soft volumetric lighting, minimalist geometric shapes, high detail render, cinematic depth of field, consistent color grade, no text, no letters, no numbers, no watermark, no text, no letters, no numbers, no watermark",
+      "audio_duration": 4.992,
+      "shot_duration": 5.342,
+      "voice": "en-US-GuyNeural",
+      "clip_source": "still"
+    },
+    "s14": {
+      "image_url": "https://image.pollinations.ai/prompt/A%20vast%20three%20dimensional%20lattice%20of%20countless%20tiny%20glowing%20colored%20cubes%20extending%20into%20the%20distance%2C%20forming%20an%20enormous%20grid%20of%20light%2C%20dark%20background%2C%20sense%20of%20overwhelming%20scale%2C%20clean%203D%20digital%20illustration%2C%20dark%20navy%20background%2C%20glowing%20cyan%20magenta%20and%20gold%20accent%20lights%2C%20soft%20volumetric%20lighting%2C%20minimalist%20geometric%20shapes%2C%20high%20detail%20render%2C%20cinematic%20depth%20of%20field%2C%20consistent%20color%20grade%2C%20no%20text%2C%20no%20letters%2C%20no%20numbers%2C%20no%20watermark%2C%20no%20text%2C%20no%20letters%2C%20no%20numbers%2C%20no%20watermark?width=1708&height=960&seed=55&nologo=true",
+      "image_endpoint": "image.pollinations.ai",
+      "image_attempts": 1,
+      "image_seed": 55,
+      "image_prompt": "A vast three dimensional lattice of countless tiny glowing colored cubes extending into the distance, forming an enormous grid of light, dark background, sense of overwhelming scale, clean 3D digital illustration, dark navy background, glowing cyan magenta and gold accent lights, soft volumetric lighting, minimalist geometric shapes, high detail render, cinematic depth of field, consistent color grade, no text, no letters, no numbers, no watermark, no text, no letters, no numbers, no watermark",
+      "audio_duration": 17.016,
+      "shot_duration": 17.366,
+      "voice": "en-US-GuyNeural",
+      "clip_source": "still"
+    },
+    "s15": {
+      "image_url": "https://image.pollinations.ai/prompt/A%20dense%20swirling%20cloud%20of%20countless%20tiny%20colored%20light%20points%20filling%20the%20frame%20like%20a%20galaxy%20of%20color%2C%20each%20point%20a%20distinct%20hue%2C%20dark%20background%2C%20sense%20of%20infinite%20variety%2C%20clean%203D%20digital%20illustration%2C%20dark%20navy%20background%2C%20glowing%20cyan%20magenta%20and%20gold%20accent%20lights%2C%20soft%20volumetric%20lighting%2C%20minimalist%20geometric%20shapes%2C%20high%20detail%20render%2C%20cinematic%20depth%20of%20field%2C%20consistent%20color%20grade%2C%20no%20text%2C%20no%20letters%2C%20no%20numbers%2C%20no%20watermark%2C%20no%20text%2C%20no%20letters%2C%20no%20numbers%2C%20no%20watermark?width=1708&height=960&seed=56&nologo=true",
+      "image_endpoint": "image.pollinations.ai",
+      "image_attempts": 1,
+      "image_seed": 56,
+      "image_prompt": "A dense swirling cloud of countless tiny colored light points filling the frame like a galaxy of color, each point a distinct hue, dark background, sense of infinite variety, clean 3D digital illustration, dark navy background, glowing cyan magenta and gold accent lights, soft volumetric lighting, minimalist geometric shapes, high detail render, cinematic depth of field, consistent color grade, no text, no letters, no numbers, no watermark, no text, no letters, no numbers, no watermark",
+      "audio_duration": 7.224,
+      "shot_duration": 7.574,
+      "voice": "en-US-GuyNeural",
+      "clip_source": "still"
+    },
+    "s16": {
+      "image_url": "https://image.pollinations.ai/prompt/A%20glowing%20rectangular%20screen%20floating%20in%20dark%20space%20displaying%20a%20beautiful%20sunset%20landscape%2C%20the%20frame%20around%20it%20made%20of%20faint%20glowing%20circuitry%20lines%2C%20contemplative%20composition%2C%20clean%203D%20digital%20illustration%2C%20dark%20navy%20background%2C%20glowing%20cyan%20magenta%20and%20gold%20accent%20lights%2C%20soft%20volumetric%20lighting%2C%20minimalist%20geometric%20shapes%2C%20high%20detail%20render%2C%20cinematic%20depth%20of%20field%2C%20consistent%20color%20grade%2C%20no%20text%2C%20no%20letters%2C%20no%20numbers%2C%20no%20watermark%2C%20no%20text%2C%20no%20letters%2C%20no%20numbers%2C%20no%20watermark?width=1708&height=960&seed=57&nologo=true",
+      "image_endpoint": "image.pollinations.ai",
+      "image_attempts": 1,
+      "image_seed": 57,
+      "image_prompt": "A glowing rectangular screen floating in dark space displaying a beautiful sunset landscape, the frame around it made of faint glowing circuitry lines, contemplative composition, clean 3D digital illustration, dark navy background, glowing cyan magenta and gold accent lights, soft volumetric lighting, minimalist geometric shapes, high detail render, cinematic depth of field, consistent color grade, no text, no letters, no numbers, no watermark, no text, no letters, no numbers, no watermark",
+      "audio_duration": 5.448,
+      "shot_duration": 5.798,
+      "voice": "en-US-GuyNeural",
+      "clip_source": "still"
+    },
+    "s17": {
+      "image_url": "https://image.pollinations.ai/prompt/A%20warm%20glowing%20sunset%20landscape%20over%20water%2C%20the%20image%20gradually%20composed%20of%20visible%20square%20tile%20pixels%20near%20the%20edges%2C%20painterly%20blend%20of%20natural%20beauty%20and%20digital%20structure%2C%20clean%203D%20digital%20illustration%2C%20dark%20navy%20background%2C%20glowing%20cyan%20magenta%20and%20gold%20accent%20lights%2C%20soft%20volumetric%20lighting%2C%20minimalist%20geometric%20shapes%2C%20high%20detail%20render%2C%20cinematic%20depth%20of%20field%2C%20consistent%20color%20grade%2C%20no%20text%2C%20no%20letters%2C%20no%20numbers%2C%20no%20watermark%2C%20no%20text%2C%20no%20letters%2C%20no%20numbers%2C%20no%20watermark?width=1708&height=960&seed=58&nologo=true",
+      "image_endpoint": "image.pollinations.ai",
+      "image_attempts": 1,
+      "image_seed": 58,
+      "image_prompt": "A warm glowing sunset landscape over water, the image gradually composed of visible square tile pixels near the edges, painterly blend of natural beauty and digital structure, clean 3D digital illustration, dark navy background, glowing cyan magenta and gold accent lights, soft volumetric lighting, minimalist geometric shapes, high detail render, cinematic depth of field, consistent color grade, no text, no letters, no numbers, no watermark, no text, no letters, no numbers, no watermark",
+      "audio_duration": 12.888,
+      "shot_duration": 13.238,
+      "voice": "en-US-GuyNeural",
+      "source": "still",
+      "video_error": "HTTP 402: {\"success\":false,\"error\":{\"message\":\"Insufficient balance. This request costs ~1.0105 pollen, but your available balance is 0.0000.\",\"code\":\"PAYMENT_REQUIRED\",\"timestamp\":\"2026-07-30T04:54:56.433Z\"},\"",
+      "clip_source": "still"
+    }
+  }
+}

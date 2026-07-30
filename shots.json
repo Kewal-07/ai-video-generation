@@ -1,0 +1,151 @@
+{
+  "full_script": "When you look at an apple, you see red. A computer, however, only understands numbers. To bridge this gap between our colorful reality and a machine's mathematical brain, we break images down into tiny, illuminated building blocks called pixels. How does a pixel know what color to be? It uses the RGB color model, which mimics the biology of human vision. Every pixel contains three sub-pixels: Red, Green, and Blue. By mixing different intensities of these three lights, screens can trick your brain into seeing almost any color imaginable. To precisely measure the intensity of each sub-pixel, computers use a system called bit depth. Standard color imaging uses an 8-bit system for each of the three channels. Mathematically, this means two to the eighth power, resulting in 256 possible combinations per channel. Because a computer starts counting at zero, this gives us a range from 0 to 255. Zero means the light is completely off, and 255 means the light is at maximum brightness. These values act as mathematical coordinates for color. Pure red is (255, 0, 0). If you turn all the lights off to (0, 0, 0), you get pitch black. Turn them all the way up to 255, and you get a blinding white. To find the total number of colors a standard monitor can display, we multiply the 256 levels of each channel together. 256 times 256 times 256 equals 16,777,216. That is nearly 16.8 million unique colors, with every single one mapped to a specific mathematical coordinate. The next time you look at a stunning digital photograph, remember what you are really seeing. You aren't seeing the sunset. You are seeing millions of microscopic lights, executing billions of mathematical calculations every second, perfectly orchestrated to replicate the beauty of the real world.",
+  "base_seed": 42,
+  "style_suffix": "clean 3D digital illustration, dark navy background, glowing cyan magenta and gold accent lights, soft volumetric lighting, minimalist geometric shapes, high detail render, cinematic depth of field, consistent color grade, no text, no letters, no numbers, no watermark",
+  "video_model": "nova-reel",
+  "video_duration_step": 6,
+  "image_model": "flux",
+  "voice": "en-US-GuyNeural",
+  "shots": [
+    {
+      "id": "s01",
+      "narration": "When you look at an apple, you see red. A computer, however, only understands numbers.",
+      "image_prompt": "Glossy red apple in soft studio light, positioned in the left half of frame, its surface dissolving into streams of glowing binary digit shaped light particles drifting toward the right half of frame where they coalesce into a faint grid of light",
+      "motion": "the apple's surface visibly dissolves into a swirling stream of glowing digit shaped light particles that drift rightward and coalesce into a faint grid, slow continuous motion",
+      "static_motion": "pan_right",
+      "animate": true,
+      "overlay_text": ""
+    },
+    {
+      "id": "s02",
+      "narration": "To bridge this gap between our colorful reality and a machine's mathematical brain, we break images down into tiny, illuminated building blocks called pixels.",
+      "image_prompt": "Macro view of a smooth glowing colorful sheet of light beginning to fracture along a fine grid into small square tiles, each tile glowing a slightly different hue, dramatic close perspective",
+      "motion": "the smooth glowing surface cracks and separates along a grid, each tile lifting slightly and glowing individually, revealing itself as a mosaic of small square pixels, slow steady motion",
+      "static_motion": "zoom_out",
+      "animate": true,
+      "overlay_text": ""
+    },
+    {
+      "id": "s03",
+      "narration": "How does a pixel know what color to be?",
+      "image_prompt": "A single glowing square pixel floating in dark space, softly pulsing, surrounded by faint drifting wisps and sparks of light, minimalist and enigmatic",
+      "motion": "zoom_in",
+      "animate": false,
+      "overlay_text": ""
+    },
+    {
+      "id": "s04",
+      "narration": "It uses the RGB color model, which mimics the biology of human vision.",
+      "image_prompt": "Stylized cross section of a human eye rendered as glowing light circuitry, with three colored light rays, red green and blue, emanating from the pupil into darkness, biological meets digital aesthetic",
+      "motion": "pan_right",
+      "animate": false,
+      "overlay_text": ""
+    },
+    {
+      "id": "s05",
+      "narration": "Every pixel contains three sub-pixels: Red, Green, and Blue.",
+      "image_prompt": "Extreme macro view of a single pixel split into three vertical glowing bars of light, one red, one green, one blue, standing side by side like glass columns, dark background",
+      "motion": "pan_up",
+      "animate": false,
+      "overlay_text": ""
+    },
+    {
+      "id": "s06",
+      "narration": "By mixing different intensities of these three lights, screens can trick your brain into seeing almost any color imaginable.",
+      "image_prompt": "Three cone shaped beams of red, green, and blue light converging toward a single point in dark space, overlapping regions glowing in blended secondary hues, elegant volumetric light art",
+      "motion": "the three light cones slowly swell and shift intensity, their overlapping region blending and shifting through new colors as the beams pulse, continuous smooth motion",
+      "static_motion": "pan_up",
+      "animate": true,
+      "overlay_text": ""
+    },
+    {
+      "id": "s07",
+      "narration": "To precisely measure the intensity of each sub-pixel, computers use a system called bit depth.",
+      "image_prompt": "A tall glowing vertical light gauge made of stacked luminous segments, like a futuristic thermometer of light, measuring brightness intensity, dark technical background",
+      "motion": "zoom_in",
+      "animate": false,
+      "overlay_text": ""
+    },
+    {
+      "id": "s08",
+      "narration": "Standard color imaging uses an 8-bit system for each of the three channels. Mathematically, this means two to the eighth power, resulting in 256 possible combinations per channel.",
+      "image_prompt": "A glowing staircase of light made of eight distinct luminous steps rising upward, each step brighter than the last, dark minimalist background, clean geometric render",
+      "motion": "zoom_out",
+      "animate": false,
+      "overlay_text": "8-bit -> 2^8 = 256"
+    },
+    {
+      "id": "s09",
+      "narration": "Because a computer starts counting at zero, this gives us a range from 0 to 255. Zero means the light is completely off, and 255 means the light is at maximum brightness.",
+      "image_prompt": "A long horizontal glowing gradient bar of light stretching from complete darkness on the left to blinding brightness on the right, smooth continuous gradient, dark background",
+      "motion": "pan_right",
+      "animate": false,
+      "overlay_text": "0 - 255"
+    },
+    {
+      "id": "s10",
+      "narration": "These values act as mathematical coordinates for color.",
+      "image_prompt": "An abstract three dimensional cube made of glowing grid lines floating in dark space, faint colored points of light marking coordinates inside it, elegant technical visualization",
+      "motion": "pan_up",
+      "animate": false,
+      "overlay_text": ""
+    },
+    {
+      "id": "s11",
+      "narration": "Pure red is (255, 0, 0).",
+      "image_prompt": "A single glowing solid red cube floating in pure darkness, radiant crimson light, minimalist product render style",
+      "motion": "zoom_in",
+      "animate": false,
+      "overlay_text": "(255, 0, 0)"
+    },
+    {
+      "id": "s12",
+      "narration": "If you turn all the lights off to (0, 0, 0), you get pitch black.",
+      "image_prompt": "A single dark matte cube barely visible against a pure black background, faint outline lit by the thinnest rim of light, minimalist product render style",
+      "motion": "zoom_out",
+      "animate": false,
+      "overlay_text": "(0, 0, 0)"
+    },
+    {
+      "id": "s13",
+      "narration": "Turn them all the way up to 255, and you get a blinding white.",
+      "image_prompt": "A single glowing pure white cube radiating intense bright light against dark background, overexposed glow, minimalist product render style",
+      "motion": "zoom_in",
+      "animate": false,
+      "overlay_text": "(255, 255, 255)"
+    },
+    {
+      "id": "s14",
+      "narration": "To find the total number of colors a standard monitor can display, we multiply the 256 levels of each channel together. 256 times 256 times 256 equals 16,777,216.",
+      "image_prompt": "A vast three dimensional lattice of countless tiny glowing colored cubes extending into the distance, forming an enormous grid of light, dark background, sense of overwhelming scale",
+      "motion": "zoom_out",
+      "animate": false,
+      "overlay_text": "256 x 256 x 256 = 16,777,216"
+    },
+    {
+      "id": "s15",
+      "narration": "That is nearly 16.8 million unique colors, with every single one mapped to a specific mathematical coordinate.",
+      "image_prompt": "A dense swirling cloud of countless tiny colored light points filling the frame like a galaxy of color, each point a distinct hue, dark background, sense of infinite variety",
+      "motion": "pan_left",
+      "animate": false,
+      "overlay_text": ""
+    },
+    {
+      "id": "s16",
+      "narration": "The next time you look at a stunning digital photograph, remember what you are really seeing.",
+      "image_prompt": "A glowing rectangular screen floating in dark space displaying a beautiful sunset landscape, the frame around it made of faint glowing circuitry lines, contemplative composition",
+      "motion": "zoom_in",
+      "animate": false,
+      "overlay_text": ""
+    },
+    {
+      "id": "s17",
+      "narration": "You aren't seeing the sunset. You are seeing millions of microscopic lights, executing billions of mathematical calculations every second, perfectly orchestrated to replicate the beauty of the real world.",
+      "image_prompt": "A warm glowing sunset landscape over water, the image gradually composed of visible square tile pixels near the edges, painterly blend of natural beauty and digital structure",
+      "motion": "the sunset image gradually resolves and dissolves into a grid of individually glowing square tiles across the whole frame, each tile pulsing faintly like a data point, slow graceful motion",
+      "static_motion": "zoom_in",
+      "animate": true,
+      "overlay_text": ""
+    }
+  ]
+}
