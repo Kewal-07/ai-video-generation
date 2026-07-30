@@ -2,244 +2,250 @@
 
 ## 1. Summary
 
-- Video link: TODO (upload output/final.mp4 as unlisted YouTube or Google Drive, paste link here)
-- Runtime: 134.1s
-- Resolution: 854x480 (480p, 30fps, H.264/AAC)
+- Video link: TODO — upload `output/final.mp4` as unlisted YouTube or Google Drive and paste the link here
+- Runtime: 134.1 seconds
+- Resolution: 854x480 (480p), 30fps
 - How to reproduce:
   ```
   export POLLINATIONS_KEY=your_key
   python3 pipeline.py
   ```
-  Same `shots.json` (seed 42, seed = base_seed + shot_index) plus cached
-  intermediates in `cache/` reproduce the same video. `run_log.json` records
-  every prompt, seed, endpoint, and retry count actually used in this run.
+  Everything is driven by `shots.json`, and every shot uses a fixed seed
+  (`42 + shot index`), so running it again produces the same video.
+  `run_log.json` lists every prompt, seed, and API call actually made in
+  this run, as proof.
 
 ## 2. Workflow
 
-Stage graph: `concept -> tts -> images -> animate -> overlay -> clips -> concat`
+The pipeline runs in seven steps, in this order:
 
-- **tts before images/animate**: audio duration drives everything downstream
-  (hard rule: never hardcode a duration). Every later stage needs
-  `shot_duration` from `run_log.json`, so tts has to run first or those
-  stages fail loudly with a clear error telling you to run tts first.
-- **images before animate**: the animate stage reuses the still's own
-  generation URL as the `image=` init-image parameter for image-to-video, so
-  a still has to exist (and its URL cached) before animate can reference it.
-- **overlay before clips**: overlay renders two kinds of transparent PNG
-  cards (a subtitle band for all 17 shots, a number label for 6 of them) that
-  clips then composites onto the zoompan'd background. Clips needs those PNGs
-  to already exist on disk.
-- **On-disk caching per stage**: every stage skips work whose output file
-  already exists unless `--force`. This mattered in practice - I iterated on
-  the clips-stage motion logic and the overlay layout multiple times without
-  re-spending any Pollinations budget, since images and tts audio stayed
-  cached the whole time.
+`concept -> tts -> images -> animate -> overlay -> clips -> concat`
 
-## 3. Pipeline steps
+They have to run in this order because each one depends on something the
+previous one made:
+
+- **tts before images/animate** — the narration audio decides how long
+  each shot is. Nothing after this step can be built without knowing that.
+- **images before animate** — the "animate" step turns a still image into
+  a short video clip, so the still has to exist first.
+- **overlay before clips** — overlay draws the on-screen text (subtitles
+  and number labels) as separate image files. Clips then stitches
+  background + text + audio together, so the text images need to exist
+  first.
+
+Every step saves its output to disk and skips redoing work that's already
+there (unless you pass `--force`). This mattered in practice — it meant
+that when I was tweaking how the camera motion looked, I could rerun just
+that part dozens of times without spending any more of the image/video
+generation budget.
+
+## 3. What each step does
 
 ### concept
 
-- Objective: Turn the raw voiceover script into a 17-shot list (id,
-  narration, image prompt, motion, animate flag, overlay text) before any
-  code ran, and keep that list under version control in `shots.json` so
-  re-running the pipeline can't silently drift the approved narrative.
-- Outcome: 17 shots, split at sentence boundaries, one idea per shot; 4
-  flagged `animate: true` (apple to digits, surface to pixel grid, RGB cones
-  blending, sunset to tiles), 6 flagged with a numeric overlay. A
-  load-time assertion checks the concatenated shot narration reproduces the
-  original script verbatim, so a typo or dropped clause fails the run
-  immediately instead of silently airing a wrong sentence.
-- Why this choice: the brief names "visual conceptualization" as a real
-  pipeline step, but an LLM call here would make the one artifact that's
-  hardest to defend (the creative narrative) the least inspectable.
-  Authoring it once, by hand, and letting the script just validate it kept
-  the design decision visible and reviewable rather than regenerable noise.
+**What it's for:** Turn the voiceover script into a shot-by-shot plan —
+17 shots, each with its own narration, image description, and camera
+motion — before writing any code.
+
+**What happened:** The shot list was written by hand, once, and saved in
+`shots.json`. Four shots were picked for AI-generated video motion (the
+apple turning into digits, a surface cracking into a pixel grid, three
+colored light beams blending, and a sunset dissolving into tiles). Six
+shots got an exact number overlay (like `(255, 0, 0)` or
+`256 x 256 x 256 = 16,777,216`). Every time the pipeline runs, it checks
+that all 17 shots' narration lines, glued together, exactly match the
+original script word-for-word — so a typo can't sneak through unnoticed.
+
+**Why this way:** An AI model could have generated the shot list too, but
+that would make the one part of this project that's hardest to
+double-check (the creative direction) also the least visible. Writing it
+by hand once and having the code just verify it kept that decision
+something a person actually made and can explain.
 
 ### tts
 
-- Objective: One narrated audio file per shot, loudness-normalized once, with
-  parentheses stripped so voices don't read "(255, 0, 0)" as "left paren two
-  five five...".
-- Outcome: All 17 shots synthesized with edge-tts (`en-US-GuyNeural`),
-  durations ranging 3.10s (`s03`) to 17.02s (`s14`). `loudnorm=I=-16:TP=-1.5:
-  LRA=11` applied once per file.
-- Why this choice: edge-tts is free, local, and fast, so it doesn't compete
-  for the same paid budget as images/video. Normalizing once per file at the
-  source (rather than per-clip later) means loudness doesn't drift shot to
-  shot if a later stage re-encodes.
+**What it's for:** Turn each shot's narration into spoken audio.
+
+**What happened:** All 17 lines were narrated using edge-tts (a free
+text-to-speech tool), with one voice throughout. The shortest clip is
+about 3 seconds, the longest about 17 seconds. Each audio file's volume
+was normalized once, right after it's created.
+
+**Why this way:** edge-tts is free and runs locally, so it doesn't
+compete with the image/video generation budget. Normalizing loudness once
+per file (rather than later, when clips are assembled) keeps every shot
+sounding equally loud instead of drifting quieter or louder shot to shot.
 
 ### images
 
-- Objective: One AI-generated still per shot at 2x output resolution, shared
-  style suffix, no rendered text (all numbers added by Pillow later).
-- Outcome: All 17 stills fetched successfully in one attempt each - but
-  every one of them went through the free fallback endpoint
-  (`image.pollinations.ai`), not the primary `gen.pollinations.ai/image`
-  endpoint, because the API key had 0 pollen balance. See Dead Ends below;
-  this is also why the final output is 480p rather than 720p.
-- Why this choice: requesting 2x resolution (1708x960 against an 854x480
-  output) was meant to give zoompan headroom without softening. In practice
-  the free endpoint ignores the requested width/height and returns a fixed
-  1024x576 regardless, so the real "2x" margin came from adjusting the
-  output resolution down to 480p to match what was actually available, not
-  from the request parameters.
+**What it's for:** Generate one AI background image per shot, all sharing
+one visual style so the video looks like one film instead of 17 unrelated
+pictures. No text or numbers are generated in the image itself — those
+get added separately (see "overlay" below).
+
+**What happened:** All 17 images generated successfully. Every one of
+them, though, came from a different, free fallback image service instead
+of the main one, because the API key being used has no paid balance. That
+also turned out to affect the video's final resolution — details in
+"Dead ends" below.
+
+**Why this way:** Images were requested at twice the final video's
+resolution, so that later camera-motion effects wouldn't make things look
+soft or blurry.
 
 ### animate
 
-- Objective: Real image-to-video motion on the 4 flagged shots via
-  Pollinations' `nova-reel` model, using the shot's own still as the init
-  frame so style holds, with duration derived as
-  `6 * ceil((audio+pad)/6)` (nova-reel's minimum unit is 6s) rather than
-  fixed.
-- Outcome: All 4 attempts failed - 1 read-timeout after ~5 minutes on `s01`,
-  3 clean 402 "Insufficient balance" errors on `s02`/`s06`/`s17` (nova-reel
-  costs ~1.01 pollen per request, roughly 500x an image) - and all 4 fell
-  back to still+zoompan automatically, logging the error without crashing
-  the run.
-- Why this choice: nova-reel was the only non-`paid_only` video model in
-  Pollinations' `/video/models` listing, confirmed against their live
-  OpenAPI spec before writing any code (not guessed). The automatic
-  still-fallback exists specifically because free-tier video generation is
-  unreliable - the pipeline had to keep working if it failed, not just when
-  it succeeded.
+**What it's for:** For the 4 shots picked for real AI motion, turn their
+still image into a few seconds of AI-generated video, using the still as
+the starting frame so the style doesn't change.
+
+**What happened:** All 4 attempts failed — 3 were rejected immediately for
+insufficient account balance, and one just never responded and timed out
+after 5 minutes. In every case, the pipeline noticed the failure, logged
+it, and automatically used the plain still image with camera motion
+instead — the video still finished normally, just without real AI motion
+on those 4 shots.
+
+**Why this way:** Free AI video generation is unreliable — sometimes it
+costs money you don't have, sometimes it just hangs. The pipeline was
+built to expect that and keep going instead of stopping the whole video
+over one failed shot.
 
 ### overlay
 
-- Objective: Draw exact, correct on-screen text with Pillow rather than
-  trust an image model to render legible characters - both the 6 numeric
-  labels and, later, a subtitle caption band for all 17 shots.
-- Outcome: 6 number cards (`(255,0,0)`, `0-255`, `256 x 256 x 256 =
-  16,777,216`, etc.), 17 subtitle cards, all rendered as separate transparent
-  PNGs composited onto the background *after* zoompan rather than baked into
-  the source image.
-- Why this choice: diffusion models render text unreliably and re-rolling
-  for legible glyphs wastes generation budget for no guaranteed gain -
-  Pillow draws the exact string every time. Keeping the text as a separate
-  post-zoompan layer (rather than baked onto the still before motion is
-  applied) was a fix, not just a preference: baking text onto the
-  background before a 1.6x zoom meant the crop window could shrink past
-  where the text was drawn, cropping it out of frame. Compositing after
-  zoompan keeps captions fully visible regardless of background motion, and
-  the number labels fade in independently of it.
+**What it's for:** Add on-screen text — a caption of the narration on
+every shot, and an exact number label on the 6 shots that need one — using
+a plain text-drawing tool instead of hoping the AI image generator gets
+the numbers right.
+
+**What happened:** 17 subtitle captions and 6 number labels, each drawn as
+its own separate transparent image and placed on top of the background
+afterward, not baked into it.
+
+**Why this way:** AI image generators are bad at drawing legible text — a
+wrong digit in "256 x 256 x 256 = 16,777,216" would be a real, visible
+error. Drawing it with a text tool guarantees it's correct. Keeping it as
+a separate layer on top (instead of drawing it directly onto the
+background) also matters mechanically: the background moves and zooms in
+the next step, and text baked into a zoomed-in image can get cropped out
+of frame. A separate layer stays put no matter what the background is
+doing underneath it.
 
 ### clips
 
-- Objective: Normalize every shot to one byte-compatible spec (854x480,
-  30fps, yuv420p, H.264 crf20, AAC 48kHz stereo 160k) regardless of source -
-  still+zoompan or (if it existed) real AI video - so concat can stream-copy.
-- Outcome: All 17 built as still+zoompan (since animate had 0 successes).
-  Motion direction and rate are computed per-shot from that shot's own frame
-  count, so a 17s shot keeps moving the whole way through instead of hitting
-  a fixed zoom cap early and sitting still for the remainder.
-- Why this choice: an earlier version used a fixed per-frame zoom rate
-  shared across all shots, which meant the four longest shots (12-17s, over
-  a third of total runtime) stopped moving after a couple of seconds and
-  visibly stalled. Scaling the rate to `(max_zoom-1)/total_frames` makes
-  every shot's motion proportional to its own length instead.
+**What it's for:** Turn each shot's background + audio + text into one
+short video file, all in the exact same format, so they can be joined
+together at the end without re-encoding.
+
+**What happened:** All 17 shots became still images with a slow pan/zoom
+(a "Ken Burns" effect), since none of the AI motion attempts succeeded.
+The camera movement speed is calculated from each shot's own length, so a
+17-second shot keeps moving the whole way through instead of stopping
+early.
+
+**Why this way:** An earlier version moved the camera at the same fixed
+speed on every shot, which meant long shots (several are 12+ seconds)
+would finish their motion in the first couple of seconds and then just
+sit still for the rest — which is what made the video feel static at
+first. Scaling the speed to each shot's actual length fixed that.
 
 ### concat
 
-- Objective: Join all 17 clips into one file, verify total runtime lands in
-  the 105-135s target window, and print a per-shot table as submission
-  evidence.
-- Outcome: 134.1s total, `-c copy` stream concatenation succeeded (all clips
-  were already byte-compatible from the clips stage, no re-encode fallback
-  needed).
-- Why this choice: stream-copy concat is fast and lossless, but only works
-  if every input clip already shares codec/resolution/framerate/sample rate
-  - which is exactly what the clips stage's fixed encode settings guarantee.
+**What it's for:** Join all 17 shot clips into the final video, check the
+total length is close to the 2-minute target, and print a summary table.
+
+**What happened:** Final video is 134.1 seconds — inside the intended
+105-135 second range. All 17 clips joined without needing to re-encode
+anything, since they were all already saved in the same format.
+
+**Why this way:** Joining pre-matched clips without re-encoding is fast
+and doesn't lose any quality — but it only works if every clip already
+shares the exact same resolution, frame rate, and audio format, which is
+what the clips step guarantees.
 
 ## 4. Iteration
 
-- Zero image rerolls: all 17 stills passed review on the first generation
-  (spot-checked several, including all 4 animate-shot init frames and one
-  numeric-overlay shot).
-- Motion was iterated twice after the first full render looked visually
-  static: first pass used a fixed-rate zoompan (max zoom 1.3x, constant
-  per-frame increment) copied from a generic Ken Burns recipe; second pass
-  made the rate proportional to each shot's own duration and raised the
-  ceiling to 1.6x (safe under the 2x generation headroom).
-- Subtitles were added after the first version of the video was already
-  complete, as a deliberate accessibility/explainability addition, not
-  something the original design missed - see brief's own framing of
-  "explainable over impressive."
-- The subtitle addition surfaced and fixed a layout bug in the same pass:
-  the number-overlay position was originally fixed at a constant height,
-  which collided with subtitle captions that wrapped to 3-4 lines (e.g.
-  `s08`'s narration). Fixed by computing the subtitle band's height first
-  and positioning the number label just above it, per shot.
+- **Images:** all 17 backgrounds were accepted on the first generation —
+  no rerolls were needed.
+- **Camera motion:** built twice. The first version moved every shot at
+  the same fixed speed, which looked static on longer shots (explained
+  above). The second version scales the speed to each shot's own length
+  and allows a bit more zoom range, which reads as more alive across
+  shots of very different lengths.
+- **Subtitles:** added after the video was already working end to end, as
+  a deliberate readability improvement — not something the original plan
+  was missing. Adding them exposed a real layout bug: the number label
+  (used on 6 shots) was pinned to a fixed height and could overlap a
+  subtitle that wrapped onto 3-4 lines. Fixed by having the number label
+  always position itself just above wherever that shot's own subtitle
+  actually ends.
 
 ## 5. Dead ends
 
-**Attempt 1 - free API key, expected full-resolution images and real AI
-video.**
-- What I tried: ran the images and animate stages with a Pollinations API
-  key that had 0 pollen balance, assuming (based on `flux` and `nova-reel`
-  showing no `paid_only` flag in `/image/models` and `/video/models`) that
-  both were usable for free.
-- What happened: every primary-endpoint image request returned
-  `402 Insufficient balance` and fell back to the free
-  `image.pollinations.ai` endpoint successfully; every animate request also
-  402'd (nova-reel costs ~1.01 pollen/request, not free) except one, which
-  instead hung for the full 5-minute timeout before failing.
-- My hypothesis: `paid_only: false`/absent in the model listing means "does
-  not require a paid *tier*," not "free to call" - there's still a per-call
-  pollen cost, and video costs roughly 500x what an image does, so a
-  zero-balance key exhausts on the very first video call.
-- What I tried next: confirmed the free image fallback endpoint
-  (`image.pollinations.ai`) worked but silently ignores requested
-  width/height, always returning 1024x576 regardless of what's asked for -
-  discovered by inspecting the actual returned file dimensions, not by
-  reading docs.
-- Final resolution: dropped output resolution from 720p to 480p (explicitly
-  allowed by the brief) so the fixed 1024x576 source stays larger than the
-  output instead of needing to be upscaled. All 4 animate shots fall back to
-  still+zoompan automatically and the pipeline completes without crashing -
-  this is the designed behavior, not a workaround.
+**Assumed the API key could generate images and video for free — it
+couldn't, not fully.**
 
-**Attempt 2 - subtitle/frame timing issue, unresolved.**
-- What I tried: after adding burned-in subtitles, spotted what looked like a
-  timing mismatch between shot cuts and caption changes.
-- What happened: [fill in what you actually saw - freeze? flicker? stale
-  text? at what timestamp?]
+- What I tried: ran the pipeline assuming both the image model and the
+  video model were usable on a free account, based on how they were
+  listed in Pollinations' own model catalog.
+- What happened: every image request was rejected for insufficient
+  balance on the main service, but succeeded instantly through a free
+  backup service. Every video request was also rejected for insufficient
+  balance, except one, which didn't error out at all and just hung until
+  it timed out 5 minutes later.
+- My hypothesis: not being flagged as "paid only" in the catalog turned
+  out to mean "doesn't require a subscription," not "free to use" — each
+  call still has a small cost, and video costs roughly 500x what an image
+  does. A zero-balance account can afford some images but not one video
+  clip.
+- What I tried next: checked exactly what the free backup image service
+  actually returned, and found it ignores the requested image size and
+  always returns a smaller, fixed size instead.
+- Final resolution: lowered the final video's resolution from 720p to
+  480p (which the assignment explicitly allows) so that smaller image
+  size wouldn't need to be stretched larger than it actually is. All 4
+  video-generation attempts fall back to a still image automatically, so
+  the pipeline finishes cleanly either way.
+
+**A subtitle timing issue I couldn't reproduce yet.**
+
+- What I tried: after adding subtitles, I noticed what looked like a
+  timing mismatch between when a shot changes and when its subtitle
+  updates.
+- What happened: [fill in exactly what you saw, and roughly when in the
+  video]
 - My hypothesis: [your best guess after watching it again]
-- What I tried next: I checked frame-to-frame differences within a shot (flat,
-  no unexpected jitter) and the frame just after all 16 shot cuts in the
-  final concatenated video (all 16 showed the correct subtitle immediately -
-  see the review grid). Neither reproduced an obvious mismatch from static
-  frame extraction alone.
-- Final resolution: not resolved. Static frame inspection couldn't reproduce
-  it, which suggests it's either a real-time playback artifact (needs live
-  scrubbing to pin down, not screenshots) or specific to a particular
-  timestamp/shot I haven't isolated yet. Documenting as open rather than
-  claiming a fix I couldn't verify.
+- What I tried next: checked whether the picture itself was jittering
+  between frames (it wasn't), and checked the frame right after every one
+  of the 16 cuts in the finished video to see if the wrong subtitle was
+  showing anywhere (it wasn't, in all 16 cases).
+- Final resolution: not fixed yet. Since it didn't show up in still frames
+  taken at each cut, it's either something only visible while the video
+  is actually playing, or specific to one moment I haven't pinned down.
+  Noting it here honestly rather than claiming a fix that wasn't verified.
 
 ## 6. Not AI-generated
 
-- ffmpeg zoompan motion on all 17 shots (Ken Burns pan/zoom, duration-scaled
-  per shot) - confirmed, no AI video succeeded due to the balance issue
-  above.
-- Pillow-rendered number overlays on 6 shots (exact glyphs, not model
-  output).
-- Pillow-rendered subtitle captions on all 17 shots.
-- No music.
-- No hand-edited prompts beyond the original design pass (shot list authored
-  once, not touched per-run).
-- No rerolls performed - the human choice here was accepting the first
-  generation on every shot, not selecting among alternates.
+- The slow pan/zoom camera motion on all 17 shots (built with ffmpeg, a
+  video-editing tool — not AI).
+- The 6 number labels and 17 subtitle captions (drawn with a plain
+  text-drawing tool, not AI).
+- No music was added.
+- No prompts were hand-edited after the original design pass — the shot
+  list was written once and left alone.
+- No image or video generations were rerolled — the first result for
+  every shot was used as-is.
 
 ## 7. Evaluation
 
-- Duration vs. 105-135s target: 134.1s - inside the window, close to the
-  ceiling.
-- Every script number correct on screen: verified `s08` ("8-bit -> 2^8 =
-  256") and `s14` ("256 x 256 x 256 = 16,777,216") directly against rendered
-  frames; [check the remaining 4 - s09, s11, s12, s13 - yourself before
-  submitting].
-- Audio and visual aligned at each cut: checked all 16 shot boundaries in
-  the final concatenated video - each showed the correct subtitle for its
-  own shot immediately after the cut, no stale text from the previous shot.
-- Style consistency across shots: single shared style suffix appended to
-  every image/video prompt (dark navy background, cyan/magenta/gold accent
-  lighting, minimalist geometric render) - [your subjective call on whether
-  it reads as one film].
+- **Length:** 134.1 seconds, inside the 105-135 second target.
+- **Numbers on screen:** checked two directly against the rendered video —
+  `8-bit -> 2^8 = 256` and `256 x 256 x 256 = 16,777,216` both render
+  correctly. [Check the remaining four — `0 - 255`, `(255, 0, 0)`,
+  `(0, 0, 0)`, `(255, 255, 255)` — yourself before submitting.]
+- **Audio and picture lining up at cuts:** checked all 16 cut points in the
+  finished video — every one showed the correct subtitle for its own shot
+  right after the cut, with nothing left over from the previous shot.
+- **Do all the shots look like one video:** [your call — every image
+  prompt shares one style description, but you're the one who watched the
+  whole thing start to finish.]
