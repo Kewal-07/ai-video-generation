@@ -7,10 +7,11 @@
 - Resolution: 854x480 (480p), 30fps
 - How to reproduce:
   ```
-  export POLLINATIONS_KEY=your_key
+  echo "POLLINATIONS_KEY=your_key" > .env
   python3 pipeline.py
   ```
-  Everything is driven by `shots.json`, and every shot uses a fixed seed
+  (see README.md for full setup). Everything is driven by `shots.json`,
+  and every shot uses a fixed seed
   (`42 + shot index`), so running it again produces the same video.
   `run_log.json` lists every prompt, seed, and API call actually made in
   this run, as proof.
