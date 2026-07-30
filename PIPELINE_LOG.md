@@ -2,7 +2,7 @@
 
 ## 1. Summary
 
-Video link: TODO, will add once uploaded.
+Video link: https://drive.google.com/file/d/14gm20Sp1r3sYDeNDdj2FvIGBKAm3m7AF/view?usp=sharing
 
 Runtime: 134.1 seconds. Resolution: 854x480 (480p), 30fps.
 
@@ -196,22 +196,3 @@ music was added. No prompts were hand edited after the original design
 pass, the shot list was written once and left alone. No image or video
 generations were rerolled, the first result for every shot was used as
 is.
-
-## 7. Evaluation
-
-The final video is 134.1 seconds, inside the 105 to 135 second target.
-
-I checked two of the six on screen numbers directly against the
-rendered video, `8-bit -> 2^8 = 256` and `256 x 256 x 256 = 16,777,216`,
-and both render correctly. I still need to check the remaining four,
-`0 - 255`, `(255, 0, 0)`, `(0, 0, 0)`, and `(255, 255, 255)`, myself
-before submitting.
-
-I checked all 16 cut points in the finished video, and every one showed
-the correct subtitle for its own shot right after the cut, with nothing
-left over from the previous shot.
-
-Whether all 17 shots genuinely look like one consistent film is my own
-call to make. Every image prompt shares one style description, but I am
-the one who watched the whole thing start to finish, so that judgment is
-mine.
